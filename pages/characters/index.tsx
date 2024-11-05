@@ -4,7 +4,7 @@ import {PageWrapper} from "../../components/PageWrapper/PageWrapper";
 import {Header} from "../../components/Header/Header";
 import Image from "next/image";
 
-// вызывается next на сервере
+// вызывается next на сервере каждыый раз как запрашиваете страницу
 export const getStaticProps = async () => {
     const characters = await API.rickAndMorty.getCharacters()
 
