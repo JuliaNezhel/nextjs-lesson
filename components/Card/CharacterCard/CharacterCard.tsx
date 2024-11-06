@@ -2,10 +2,10 @@ import { Card } from "../Card";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import aliveStatus from "public/statuses/alive.png";
+import aliveStatus from "./../../../public/statuses/alive.png";
 import deadStatus from "public/statuses/dead.png";
 import unknownStatus from "public/statuses/unknown.png";
-import {CharacterType} from '../../../assets/api/rick-and-morty-api';
+import { CharacterType } from "../../../assets/api/rick-and-morty-api";
 
 const statusImages = {
   Alive: aliveStatus,
