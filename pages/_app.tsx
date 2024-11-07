@@ -7,6 +7,8 @@ import { useLoader } from "../assets/hooks/useLoader";
 import "../styles/nprogress.css";
 
 // если нужно подключить глобальные стили тх подключают только в app
+
+// типы для Layout из документации
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -20,6 +22,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   useLoader();
 
+  // строка для Layout
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(

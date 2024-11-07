@@ -4,6 +4,7 @@ import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
 import { Header } from "../../components/Header/Header";
 import Image from "next/image";
 import { Card } from "../../components/Card/Card";
+import { getLayout } from "../../components/Layout/BaseLayout/BaseLayout";
 
 // вызывается на сервере в момент билда
 export const getServerSideProps = async () => {
@@ -33,12 +34,8 @@ const Episodes = (props: Props) => {
   const episodesList = episodes?.results.map((el) => (
     <Card key={el.id} name={el.name} />
   ));
-  return (
-    <PageWrapper>
-      <Header />
-      {episodesList}
-    </PageWrapper>
-  );
+  return <PageWrapper>{episodesList}</PageWrapper>;
 };
 
+Episodes.getLayout = getLayout;
 export default Episodes;

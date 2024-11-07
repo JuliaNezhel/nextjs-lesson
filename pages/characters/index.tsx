@@ -6,6 +6,7 @@ import {
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
 import { Header } from "../../components/Header/Header";
 import { CharacterCard } from "../../components/Card/CharacterCard/CharacterCard";
+import { getLayout } from "../../components/Layout/BaseLayout/BaseLayout";
 
 // вызывается next на сервере каждыый раз как запрашиваете страницу
 export const getStaticProps = async () => {
@@ -28,12 +29,8 @@ const Characters = (props: Props) => {
   const charactersList = characters.results.map((el) => (
     <CharacterCard key={el.id} character={el} />
   ));
-  return (
-    <PageWrapper>
-      <Header />
-      {charactersList}
-    </PageWrapper>
-  );
+  return <PageWrapper>{charactersList}</PageWrapper>;
 };
 
+Characters.getLayout = getLayout;
 export default Characters;
