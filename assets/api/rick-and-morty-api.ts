@@ -1,5 +1,5 @@
+import { Nullable } from "@type/Nullable";
 import { AxiosInstance } from "axios";
-import {Nullable} from '../types/Nullable';
 
 export class RickAndMortyApi {
   constructor(private instance: AxiosInstance) {}
