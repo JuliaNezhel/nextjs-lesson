@@ -1,13 +1,17 @@
 import { API } from "../../assets/api/api";
 import { EpisodeType, ResponseType } from "../../assets/api/rick-and-morty-api";
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
-import { Header } from "../../components/Header/Header";
-import Image from "next/image";
 import { Card } from "../../components/Card/Card";
 import { getLayout } from "../../components/Layout/BaseLayout/BaseLayout";
+import { GetServerSideProps } from "next";
 
 // вызывается на сервере в момент билда
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  //что бы сильно не пинговать сервер, есть кешироапние
+  res.setHeader(
+    "Cache-Control",
+    "publix, s-maxage=10, stale-while-revalidate=100"
+  );
   const episodes = await API.rickAndMorty.getEpisodes();
 
   if (!episodes) {
