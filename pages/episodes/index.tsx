@@ -13,11 +13,21 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     "publix, s-maxage=10, stale-while-revalidate=100"
   );
   const episodes = await API.rickAndMorty.getEpisodes();
+  const isAuth = true;
 
   if (!episodes) {
     return {
       // функци некста
       notFound: true,
+    };
+  }
+
+  if (!isAuth) {
+    return {
+      redirect: {
+        destination: "/test",
+        permanent: false,
+      },
     };
   }
 
