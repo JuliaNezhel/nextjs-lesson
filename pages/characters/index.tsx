@@ -4,10 +4,22 @@ import {
   ResponseType,
 } from "../../assets/api/rick-and-morty-api";
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
-import { CharacterCard } from "../../components/Card/CharacterCard/CharacterCard";
 import { getLayout } from "../../components/Layout/BaseLayout/BaseLayout";
+import dynamic from "next/dynamic";
 
-// вызывается next на сервере каждыый раз как запрашиваете страницу
+//ленивый импорт
+const CharacterCard = dynamic(
+  () =>
+    import("components/Card/CharacterCard/CharacterCard").then(
+      (module) => module.CharacterCard
+    ),
+  {
+    // вот эта компонента генерируется на клиенте
+    ssr: false,
+    loading: () => <h1>Loading</h1>,
+  }
+);
+
 export const getStaticProps = async () => {
   const characters = await API.rickAndMorty.getCharacters();
 
